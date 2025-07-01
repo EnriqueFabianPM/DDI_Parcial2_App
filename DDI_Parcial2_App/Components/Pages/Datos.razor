@@ -2,6 +2,7 @@
 @using DDI_Parcial2_App.Models
 @inject DDI_Parcial2_App.Services.UserServices UserServices
 @inject NavigationManager Navigation
+
 @code {
     [Parameter, SupplyParameterFromQuery] public string? email { get; set; }
     private User? user;
@@ -17,16 +18,16 @@
 
 @if (user != null)
 {
-        <h3>Mis Datos</h3>
-        <p><strong>Nombre:</strong> @user.Nombre</p>
-        <p><strong>Email:</strong> @user.Email</p>
-        <p><strong>Contraseña:</strong> @user.Password</p>
+    <h3 style="font-family: 'EarwigFactory';">Mis Datos</h3>
+    <p class="usuario-info"><strong>Nombre:</strong> @user.Nombre</p>
+    <p class="usuario-info"><strong>Email:</strong> @user.Email</p>
+    <p class="usuario-info"><strong>Contraseña:</strong> @user.Password</p>
 
-        <button @onclick="Volver">Volver al inicio</button>
+    <button class="btn-p5-2p" @onclick="Volver">Volver al inicio</button>
 }
 else
 {
-        <p style="color:red;">Usuario no encontrado.</p>
+    <p style="color:red;">Usuario no encontrado.</p>
 }
 
 @code {

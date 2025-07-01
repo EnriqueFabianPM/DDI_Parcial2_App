@@ -3,14 +3,14 @@
 @inject DDI_Parcial2_App.Services.UserServices UserServices
 @inject NavigationManager Navigation
 
-<h3>Usuarios Registrados</h3>
+<h3 style="font-family: 'EarwigFactory';">Usuarios Registrados</h3>
 
 @foreach (var user in UserServices.ObtenerTodos())
 {
-    <p>@user.Nombre - @user.Email</p>
+    <p class="usuario-info">@user.Nombre - @user.Email</p>
 }
 
-<button @onclick="Volver">Volver</button>
+<button class="btn-p5-2p" @onclick="Volver">Volver</button>
 
 @code {
     [Parameter, SupplyParameterFromQuery] public string? email { get; set; }

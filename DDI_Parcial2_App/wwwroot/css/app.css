@@ -11,7 +11,6 @@ html, body {
     background-color: black;
     background-image: url('../images/persona5_background.jpg'); /* Asegúrate de que exista */
     background-size: cover;
-    background-position: center center;
     background-repeat: no-repeat;
     color: white;
 }
@@ -61,6 +60,18 @@ button, .btn-p5 {
         background: white;
         color: black;
     }
+
+input, textarea, select, .form-control, .usuario-info, label, .btn-p5-2p {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 12px;
+    color: white;
+}
+
+.usuario-info {
+    display: block;
+    margin-bottom: 0.5rem;
+}rgin-bottom: 0.5rem;
+}
 
 /* Títulos con estilo Persona */
 h1, h2, h3 {

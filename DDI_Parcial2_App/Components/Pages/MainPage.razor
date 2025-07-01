@@ -18,9 +18,9 @@
 
 @if (user != null)
 {
-    <h3>Bienvenido, @user.Nombre</h3>
-    <button @onclick="VerMisDatos">Ver mis datos</button>
-    <button @onclick="VerUsuarios">Ver usuarios registrados</button>
+    <h3 style="font-family: 'EarwigFactory';">Bienvenido, @user.Nombre</h3>
+    <button class="btn-p5-2p" @onclick="VerMisDatos">Ver mis datos</button>
+    <button class="btn-p5-2p" @onclick="VerUsuarios">Ver usuarios registrados</button>
 }
 else
 {
