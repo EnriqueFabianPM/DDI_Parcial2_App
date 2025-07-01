@@ -1,0 +1,41 @@
+﻿@page "/login"
+@inject DDI_Parcial2_App.Services.UserServices UserServices
+@inject NavigationManager Navigation
+
+<h3>Iniciar Sesión</h3>
+
+<input @bind="email" placeholder="Correo electrónico" />
+<br />
+<input @bind="password" type="password" placeholder="Contraseña" />
+<br />
+<button @onclick="IniciarSesion">Ingresar</button>
+<button @onclick="Recuperar">¿Olvidaste tu contraseña?</button>
+
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <p style="color:red">@error</p>
+}
+
+@code {
+    string email = "";
+    string password = "";
+    string error = "";
+
+    void IniciarSesion()
+    {
+        var usuario = UserServices.Login(email, password);
+        if (usuario != null)
+        {
+            Navigation.NavigateTo($"/MainPage?email={email}");
+        }
+        else
+        {
+            error = "Credenciales incorrectas.";
+        }
+    }
+
+    void Recuperar()
+    {
+        Navigation.NavigateTo($"/recuperar?email=" + email);
+    }
+}

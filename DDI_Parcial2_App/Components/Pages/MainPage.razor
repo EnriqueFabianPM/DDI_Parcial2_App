@@ -1,0 +1,40 @@
+﻿@page "/MainPage"
+@using DDI_Parcial2_App.Models
+@inject DDI_Parcial2_App.Services.UserServices UserServices
+@inject NavigationManager Navigation
+
+@code {
+    [Parameter, SupplyParameterFromQuery] public string? email { get; set; }
+    private User? user;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrWhiteSpace(email))
+        {
+            user = UserServices.BuscarPorCorreo(email);
+        }
+    }
+}
+
+@if (user != null)
+{
+    <h3>Bienvenido, @user.Nombre</h3>
+    <button @onclick="VerMisDatos">Ver mis datos</button>
+    <button @onclick="VerUsuarios">Ver usuarios registrados</button>
+}
+else
+{
+    <p style="color:red;">Usuario no encontrado.</p>
+}
+
+@code {
+    void VerMisDatos()
+    {
+        Navigation.NavigateTo($"/datos?email={email}");
+    }
+
+    void VerUsuarios()
+    {
+        Navigation.NavigateTo($"/usuarios?email={email}");
+    }
+}

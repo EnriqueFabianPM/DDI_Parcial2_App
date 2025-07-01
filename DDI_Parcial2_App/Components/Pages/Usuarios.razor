@@ -1,0 +1,22 @@
+﻿@page "/usuarios"
+@using DDI_Parcial2_App.Models
+@inject DDI_Parcial2_App.Services.UserServices UserServices
+@inject NavigationManager Navigation
+
+<h3>Usuarios Registrados</h3>
+
+@foreach (var user in UserServices.ObtenerTodos())
+{
+    <p>@user.Nombre - @user.Email</p>
+}
+
+<button @onclick="Volver">Volver</button>
+
+@code {
+    [Parameter, SupplyParameterFromQuery] public string? email { get; set; }
+
+    void Volver()
+    {
+        Navigation.NavigateTo($"/MainPage?email={email}");
+    }
+}
