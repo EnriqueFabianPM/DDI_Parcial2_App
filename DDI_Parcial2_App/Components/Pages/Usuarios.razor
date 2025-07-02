@@ -3,14 +3,19 @@
 @inject DDI_Parcial2_App.Services.UserServices UserServices
 @inject NavigationManager Navigation
 
-<h3 style="font-family: 'EarwigFactory';">Usuarios Registrados</h3>
+<div class="login-container animate-in">
+    <h3 style="font-family: 'EarwigFactory'; text-align: center;">Usuarios Registrados</h3>
 
-@foreach (var user in UserServices.ObtenerTodos())
-{
-    <p class="usuario-info">@user.Nombre - @user.Email</p>
-}
+    <div class="font-2p">
+        @foreach (var user in UserServices.ObtenerTodos())
+        {
+            <p class="usuario-info">@user.Nombre - @user.Email</p>
+        }
+    </div>
 
-<button class="btn-p5-2p" @onclick="Volver">Volver</button>
+    <button class="btn-p5-2p" @onclick="Volver">Volver al inicio</button>
+</div>
+
 
 @code {
     [Parameter, SupplyParameterFromQuery] public string? email { get; set; }

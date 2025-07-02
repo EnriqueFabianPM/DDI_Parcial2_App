@@ -27,6 +27,14 @@ namespace DDI_Parcial2_App.Services
             return usuarios.FirstOrDefault(u => u.Email == email && u.Password == password);
         }
 
+        public User? BuscarPorCorreoYNombre(string email, string nombre)
+        {
+            return usuarios.FirstOrDefault(u =>
+                u.Email.Trim().Equals(email.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                u.Nombre.Trim().Equals(nombre.Trim(), StringComparison.OrdinalIgnoreCase)
+            );
+        }
+
         public User? BuscarPorCorreo(string email)
         {
             return usuarios.FirstOrDefault(u => u.Email == email);

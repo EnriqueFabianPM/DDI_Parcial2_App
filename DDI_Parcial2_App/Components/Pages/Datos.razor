@@ -1,7 +1,27 @@
 ﻿@page "/datos"
+
 @using DDI_Parcial2_App.Models
 @inject DDI_Parcial2_App.Services.UserServices UserServices
 @inject NavigationManager Navigation
+
+<div class="login-container animate-in">
+    @if (user != null)
+    {
+            <h3 style="font-family: 'EarwigFactory', sans-serif;">Mis Datos</h3>
+
+            <div class="font-2p">
+                <p class="usuario-info"><strong>Nombre:</strong> @user.Nombre</p>
+                <p class="usuario-info"><strong>Email:</strong> @user.Email</p>
+                <p class="usuario-info"><strong>Contraseña:</strong> @user.Password</p>
+            </div>
+
+            <button class="btn-p5-2p" @onclick="Volver">Volver al inicio</button>
+    }
+    else
+    {
+            <p style="color:red;">Usuario no encontrado.</p>
+    }
+</div>
 
 @code {
     [Parameter, SupplyParameterFromQuery] public string? email { get; set; }
@@ -14,23 +34,7 @@
             user = UserServices.BuscarPorCorreo(email);
         }
     }
-}
 
-@if (user != null)
-{
-    <h3 style="font-family: 'EarwigFactory';">Mis Datos</h3>
-    <p class="usuario-info"><strong>Nombre:</strong> @user.Nombre</p>
-    <p class="usuario-info"><strong>Email:</strong> @user.Email</p>
-    <p class="usuario-info"><strong>Contraseña:</strong> @user.Password</p>
-
-    <button class="btn-p5-2p" @onclick="Volver">Volver al inicio</button>
-}
-else
-{
-    <p style="color:red;">Usuario no encontrado.</p>
-}
-
-@code {
     void Volver()
     {
         Navigation.NavigateTo($"/MainPage?email={email}");

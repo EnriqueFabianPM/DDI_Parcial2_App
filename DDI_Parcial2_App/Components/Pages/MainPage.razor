@@ -3,6 +3,24 @@
 @inject DDI_Parcial2_App.Services.UserServices UserServices
 @inject NavigationManager Navigation
 
+<div class="login-container animate-in">
+    @if (user != null)
+    {
+        <h3 style="font-family: 'EarwigFactory'; text-align: center;">Bienvenido, @user.Nombre</h3>
+
+        <div class="font-2p">
+            <button class="btn-p5-2p" @onclick="VerMisDatos">Ver mis datos</button>
+            <button class="btn-p5-2p" @onclick="VerUsuarios">Ver usuarios registrados</button>
+            <button class="btn-p5-2p" @onclick="CerrarSesion">Cerrar Sesion</button>
+        </div>
+    }
+    else
+    {
+        <p style="color:red;">Usuario no encontrado.</p>
+    }
+</div>
+
+
 @code {
     [Parameter, SupplyParameterFromQuery] public string? email { get; set; }
     private User? user;
@@ -14,20 +32,7 @@
             user = UserServices.BuscarPorCorreo(email);
         }
     }
-}
 
-@if (user != null)
-{
-    <h3 style="font-family: 'EarwigFactory';">Bienvenido, @user.Nombre</h3>
-    <button class="btn-p5-2p" @onclick="VerMisDatos">Ver mis datos</button>
-    <button class="btn-p5-2p" @onclick="VerUsuarios">Ver usuarios registrados</button>
-}
-else
-{
-    <p style="color:red;">Usuario no encontrado.</p>
-}
-
-@code {
     void VerMisDatos()
     {
         Navigation.NavigateTo($"/datos?email={email}");
@@ -36,5 +41,10 @@ else
     void VerUsuarios()
     {
         Navigation.NavigateTo($"/usuarios?email={email}");
+    }
+
+    void CerrarSesion()
+    {
+        Navigation.NavigateTo("/login", true); // Redirige y recarga
     }
 }

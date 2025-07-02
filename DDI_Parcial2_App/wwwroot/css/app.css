@@ -5,22 +5,19 @@
     font-style: normal;
 }
 
-/* Estilos base */
 html, body {
     font-family: 'EarwigFactory', 'Press Start 2P', cursive, sans-serif;
     background-color: black;
-    background-image: url('../images/persona5_background.jpg'); /* Asegúrate de que exista */
+    background-image: url('../images/persona5_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
 }
 
-/* Enlaces */
 a, .btn-link {
     color: #e60012;
 }
 
-/* Botones Bootstrap */
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
@@ -35,7 +32,6 @@ a, .btn-link {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #e60012;
 }
 
-/* Botones Persona 5 personalizados */
 button, .btn-p5 {
     font-family: 'EarwigFactory', sans-serif;
     font-size: 14px;
@@ -61,7 +57,7 @@ button, .btn-p5 {
         color: black;
     }
 
-input, textarea, select, .form-control, .usuario-info, label, .btn-p5-2p {
+input, textarea, select, .form-control, label, .btn-p5-2p {
     font-family: 'Press Start 2P', cursive !important;
     font-size: 12px;
     color: white;
@@ -70,10 +66,8 @@ input, textarea, select, .form-control, .usuario-info, label, .btn-p5-2p {
 .usuario-info {
     display: block;
     margin-bottom: 0.5rem;
-}rgin-bottom: 0.5rem;
 }
 
-/* Títulos con estilo Persona */
 h1, h2, h3 {
     text-shadow: 2px 2px red;
     color: white;
@@ -83,7 +77,6 @@ h1, h2, h3 {
         outline: none;
     }
 
-/* Validaciones */
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
@@ -96,7 +89,6 @@ h1, h2, h3 {
     color: #e50000;
 }
 
-/* Error UI */
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -126,7 +118,6 @@ h1, h2, h3 {
         content: "An error has occurred.";
     }
 
-/* Compatibilidad con iOS */
 .status-bar-safe-area {
     display: none;
 }
@@ -145,4 +136,82 @@ h1, h2, h3 {
     .flex-column, .navbar-brand {
         padding-left: env(safe-area-inset-left);
     }
+}
+
+.login-container, .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    padding: 12px 20px;
+    width: 300px;
+    margin: 10px 0;
+    border: 2px solid #e60012;
+    background-color: #000;
+    color: white;
+}
+
+.btn-p5-2p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    padding: 12px 20px;
+    margin: 10px 0;
+    background-color: #e60012;
+    color: white;
+    border: 3px solid white;
+    box-shadow: 4px 4px 0 black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 320px;
+    text-align: center;
+}
+
+    .btn-p5-2p:hover {
+        background-color: white;
+        color: #e60012;
+        border-color: #e60012;
+        box-shadow: none;
+    }
+
+/* Animación tipo entrada estilo Persona 5 */
+@keyframes persona5FadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-in {
+    animation: persona5FadeInUp 0.8s ease-out forwards;
+}
+
+/* Botones más dinámicos al estilo P5 */
+.btn-p5-2p {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+    .btn-p5-2p:hover {
+        transform: scale(1.05);
+        box-shadow: 6px 6px 0 black;
+    }
+
+.font-2p, .font-2p * {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 12px;
+    color: white;
+    line-height: 1.6;
 }

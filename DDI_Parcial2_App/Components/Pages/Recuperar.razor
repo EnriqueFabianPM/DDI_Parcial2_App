@@ -1,0 +1,53 @@
+﻿@page "/recuperar"
+
+@using DDI_Parcial2_App.Models
+@inject DDI_Parcial2_App.Services.UserServices UserServices
+@inject NavigationManager Navigation
+
+<div class="login-container animate-in">
+    <h3 style="font-family: 'EarwigFactory'; text-align: center;">Recuperar Contraseña</h3>
+
+    <input @bind="nombreCompleto" placeholder="Nombre completo" type="text" />
+    <input @bind="email" placeholder="Correo electrónico" type="email" />
+
+    <button class="btn-p5-2p" @onclick="RecuperarPassword">Recuperar contraseña</button>
+    <button class="btn-p5-2p" @onclick="Volver">Volver al login</button>
+
+    @if (user != null)
+    {
+        <h3 style="font-family: 'EarwigFactory'; text-align: center;">Querido @user.Nombre</h3>
+        <p class="font-2p" style="color:white;">Tu contraseña es: @user.Password</p>
+    }
+    else if (!string.IsNullOrWhiteSpace(resultado))
+    {
+        <p class="font-2p" style="color:red;">@resultado</p>
+    }
+</div>
+
+@code {
+    string nombreCompleto = "";
+    string email = "";
+    string resultado = "";
+    private User? user;
+
+    void RecuperarPassword()
+    {
+        var usuario = UserServices.BuscarPorCorreoYNombre(email, nombreCompleto);
+
+        if (usuario != null)
+        {
+            user = usuario;
+            resultado = ""; // Limpia el mensaje de error si lo había
+        }
+        else
+        {
+            user = null;
+            resultado = "Nombre y correo no coinciden con ningún usuario registrado.";
+        }
+    }
+
+    void Volver()
+    {
+        Navigation.NavigateTo("/login");
+    }
+}
